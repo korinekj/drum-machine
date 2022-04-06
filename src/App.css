@@ -1,4 +1,16 @@
-body {
-  color: red;
-  font-size: 5rem;
+#drum-machine-container {
+  background-color: aqua;
+  border: 5px solid black;
+}
+
+#drum-pads-container {
+  background-color: antiquewhite;
+  border: 3px solid red;
+  width: 50%;
+}
+
+#controls-container {
+  background-color:aquamarine;
+  border: 3px solid yellow;
+  width:50%;
 }
