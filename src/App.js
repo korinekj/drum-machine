@@ -35,8 +35,33 @@ class DrumPadsContainer extends React.Component {
   render() {
     return (
       <div id="drum-pads-container">
-        <p>zde kontejner s 9 dlazdicema na bubnovani</p>
-        <PadsComponent />
+        <div class="drum-pad" id="">
+          Q
+        </div>
+        <div class="drum-pad" id="">
+          W
+        </div>
+        <div class="drum-pad" id="">
+          E
+        </div>
+        <div class="drum-pad" id="">
+          A
+        </div>
+        <div class="drum-pad" id="">
+          S
+        </div>
+        <div class="drum-pad" id="">
+          D
+        </div>
+        <div class="drum-pad" id="">
+          Z
+        </div>
+        <div class="drum-pad" id="">
+          X
+        </div>
+        <div class="drum-pad" id="">
+          C
+        </div>
       </div>
     );
   }
@@ -47,7 +72,6 @@ class ControlsContainer extends React.Component {
   render() {
     return (
       <div id="controls-container">
-        <p>zde kontejner ktery obsahuje ovladaci prvky</p>
         <PowerComponent />
         <DisplayComponent />
         <VolumeComponent />
@@ -61,24 +85,15 @@ class ControlsContainer extends React.Component {
 //Níže jsou jednotlivé komponenty aplikace:
 //
 
-//    ** KOMPONENTY <DrumPadsContainer> **
-class PadsComponent extends React.Component {
-  render() {
-    return (
-      <div id="drum-pads">
-        <p>komponenta dlazdice 9x</p>
-      </div>
-    );
-  }
-}
-
 //    ** KOMPONENTY <ControlsContainer> **
 
 class PowerComponent extends React.Component {
   render() {
     return (
       <div id="power">
-        <p>komponenta zapnuto/vypnuto</p>
+        <p>Power</p>
+        <span class="off"></span>
+        <span class="on"></span>
       </div>
     );
   }
@@ -88,7 +103,7 @@ class DisplayComponent extends React.Component {
   render() {
     return (
       <div id="display-text">
-        <p>komponenta pole s popisem co se prehrava za zvuk</p>
+        <p>display</p>
       </div>
     );
   }
@@ -98,7 +113,7 @@ class VolumeComponent extends React.Component {
   render() {
     return (
       <div id="volume">
-        <p>komponenta nastaveni hlasitosti</p>
+        <input type="range" min="0" max="100" step="10"></input>
       </div>
     );
   }
@@ -108,7 +123,9 @@ class AudioTypeComponent extends React.Component {
   render() {
     return (
       <div id="audio-type">
-        <p>komponenta 2 druhy zvuku</p>
+        <p>Audio Type</p>
+        <span class="off"></span>
+        <span class="on"></span>
       </div>
     );
   }
