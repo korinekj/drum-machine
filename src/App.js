@@ -6,11 +6,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      clip: "",
+    };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick() {}
+
   render() {
-    return <DrumMachineContainer />;
+    console.log(this);
+    return <DrumMachineContainer handleClick={this.handleClick} />;
   }
 }
 
@@ -22,8 +29,8 @@ class App extends React.Component {
 class DrumMachineContainer extends React.Component {
   render() {
     return (
-      <div id="drum-machine-container">
-        <DrumPadsContainer />
+      <div id="drum-machine">
+        <DrumPadsContainer handleClick={this.props.handleClick} />
         <ControlsContainer />
       </div>
     );
@@ -32,35 +39,58 @@ class DrumMachineContainer extends React.Component {
 
 //Kontejner s 9 "dlaždicemi" které vydávají zvuk
 class DrumPadsContainer extends React.Component {
+  componentDidMount() {
+    const a = document.querySelectorAll(".drum-pad").forEach((item) => {
+      item.addEventListener("click", this.props.handleClick);
+    });
+  }
+
   render() {
     return (
       <div id="drum-pads-container">
-        <div class="drum-pad" id="">
-          Q
+        <div className="drum-pad" id="delej">
+          <span>Q</span>
+          <audio
+            src="https://www.jirikara.cz/delej.mp3"
+            className="clip"
+            id="Q"
+          ></audio>
         </div>
-        <div class="drum-pad" id="">
-          W
+        <div className="drum-pad" id="mam-to-v-pici">
+          <span>W</span>
+          <audio
+            src="https://www.jirikara.cz/mamtovpici.mp3"
+            className="clip"
+            id="W"
+          ></audio>
         </div>
-        <div class="drum-pad" id="">
-          E
+        <div className="drum-pad" id="a-co-jako-vole">
+          <span>E</span>
+          <audio src="" className="clip" id="E"></audio>
         </div>
-        <div class="drum-pad" id="">
-          A
+        <div className="drum-pad" id="duranga-vole">
+          <span>A</span>
+          <audio src="" className="clip" id="A"></audio>
         </div>
-        <div class="drum-pad" id="">
-          S
+        <div className="drum-pad" id="rikas-mi-hezky">
+          <span>S</span>
+          <audio src="" className="clip" id="S"></audio>
         </div>
-        <div class="drum-pad" id="">
-          D
+        <div className="drum-pad" id="stranskej-vyprcanej">
+          <span>D</span>
+          <audio src="" className="clip" id="D"></audio>
         </div>
-        <div class="drum-pad" id="">
-          Z
+        <div className="drum-pad" id="je-cas-klidu">
+          <span>Z</span>
+          <audio src="" className="clip" id="Z"></audio>
         </div>
-        <div class="drum-pad" id="">
-          X
+        <div className="drum-pad" id="curak-vydlazdenej">
+          <span>X</span>
+          <audio src="" className="clip" id="X"></audio>
         </div>
-        <div class="drum-pad" id="">
-          C
+        <div className="drum-pad" id="ser-na-to">
+          <span>C</span>
+          <audio src="" className="clip" id="C"></audio>
         </div>
       </div>
     );
@@ -92,8 +122,8 @@ class PowerComponent extends React.Component {
     return (
       <div id="power">
         <p>Power</p>
-        <span class="off"></span>
-        <span class="on"></span>
+        <span className="off"></span>
+        <span className="on"></span>
       </div>
     );
   }
@@ -102,7 +132,7 @@ class PowerComponent extends React.Component {
 class DisplayComponent extends React.Component {
   render() {
     return (
-      <div id="display-text">
+      <div id="display">
         <p>display</p>
       </div>
     );
@@ -124,8 +154,8 @@ class AudioTypeComponent extends React.Component {
     return (
       <div id="audio-type">
         <p>Audio Type</p>
-        <span class="off"></span>
-        <span class="on"></span>
+        <span className="off"></span>
+        <span className="on"></span>
       </div>
     );
   }

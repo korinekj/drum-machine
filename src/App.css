@@ -13,7 +13,7 @@ input {
   margin-top: 15px;
 }
 
-#drum-machine-container {
+#drum-machine {
   background-color: #B3B3B3;
   border: 5px solid orange;
   display: flex;
@@ -75,13 +75,13 @@ input {
 }
 
 
-#display-text {
+#display {
   width: 70%;
   height: 50px;
   margin: 0 auto;
   background-color: white;
 }
-#display-text p {
+#display p {
   padding: 10px;
 }
 
