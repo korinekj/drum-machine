@@ -13,10 +13,45 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {}
+  handleClick(event) {
+    let clickedSound = event.currentTarget.id;
+
+    this.setState({
+      clip: clickedSound,
+    });
+
+    switch (this.state.clip) {
+      case "delej":
+        document.getElementById("Q").play();
+        break;
+      case "mam-to-v-pici":
+        document.getElementById("W").play();
+        break;
+      case "a-co-jako-vole":
+        document.getElementById("E").play();
+        break;
+      case "duranga-vole":
+        document.getElementById("A").play();
+        break;
+      case "rikas-mi-hezky":
+        document.getElementById("S").play();
+        break;
+      case "stranskej-vyprcanej":
+        document.getElementById("D").play();
+        break;
+      case "je-cas-klidu":
+        document.getElementById("Z").play();
+        break;
+      case "curak-vydlazdenej":
+        document.getElementById("X").play();
+        break;
+      case "ser-na-to":
+        document.getElementById("C").play();
+        break;
+    }
+  }
 
   render() {
-    console.log(this);
     return <DrumMachineContainer handleClick={this.handleClick} />;
   }
 }
@@ -40,7 +75,8 @@ class DrumMachineContainer extends React.Component {
 //Kontejner s 9 "dlaždicemi" které vydávají zvuk
 class DrumPadsContainer extends React.Component {
   componentDidMount() {
-    const a = document.querySelectorAll(".drum-pad").forEach((item) => {
+    document.querySelectorAll(".drum-pad").forEach((item) => {
+      console.log(item);
       item.addEventListener("click", this.props.handleClick);
     });
   }
@@ -49,12 +85,12 @@ class DrumPadsContainer extends React.Component {
     return (
       <div id="drum-pads-container">
         <div className="drum-pad" id="delej">
-          <span>Q</span>
           <audio
             src="https://www.jirikara.cz/delej.mp3"
             className="clip"
             id="Q"
           ></audio>
+          <span>Q</span>
         </div>
         <div className="drum-pad" id="mam-to-v-pici">
           <span>W</span>
@@ -66,31 +102,59 @@ class DrumPadsContainer extends React.Component {
         </div>
         <div className="drum-pad" id="a-co-jako-vole">
           <span>E</span>
-          <audio src="" className="clip" id="E"></audio>
+          <audio
+            src="https://www.jirikara.cz/acojakovole.mp3"
+            className="clip"
+            id="E"
+          ></audio>
         </div>
         <div className="drum-pad" id="duranga-vole">
           <span>A</span>
-          <audio src="" className="clip" id="A"></audio>
+          <audio
+            src="https://www.jirikara.cz/duranga-voe.mp3"
+            className="clip"
+            id="A"
+          ></audio>
         </div>
         <div className="drum-pad" id="rikas-mi-hezky">
           <span>S</span>
-          <audio src="" className="clip" id="S"></audio>
+          <audio
+            src="https://www.jirikara.cz/rikas-mi-hezky.mp3"
+            className="clip"
+            id="S"
+          ></audio>
         </div>
         <div className="drum-pad" id="stranskej-vyprcanej">
           <span>D</span>
-          <audio src="" className="clip" id="D"></audio>
+          <audio
+            src="https://www.jirikara.cz/stranskej.mp3"
+            className="clip"
+            id="D"
+          ></audio>
         </div>
         <div className="drum-pad" id="je-cas-klidu">
           <span>Z</span>
-          <audio src="" className="clip" id="Z"></audio>
+          <audio
+            src="https://www.jirikara.cz/cas_klidu.mp3"
+            className="clip"
+            id="Z"
+          ></audio>
         </div>
         <div className="drum-pad" id="curak-vydlazdenej">
           <span>X</span>
-          <audio src="" className="clip" id="X"></audio>
+          <audio
+            src="https://www.jirikara.cz/curak_vydlazdenej.mp3"
+            className="clip"
+            id="X"
+          ></audio>
         </div>
         <div className="drum-pad" id="ser-na-to">
           <span>C</span>
-          <audio src="" className="clip" id="C"></audio>
+          <audio
+            src="https://www.jirikara.cz/ser_na_to.mp3"
+            className="clip"
+            id="C"
+          ></audio>
         </div>
       </div>
     );
