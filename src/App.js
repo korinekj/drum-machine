@@ -14,12 +14,14 @@ class App extends React.Component {
   }
 
   handleClick(event) {
+    //clickedSound = id elementu na kterém mám přichycený event listener (event.target.id by vracelo id konkretniho elementu na ktery jsem kliknul)
     let clickedSound = event.currentTarget.id;
 
     this.setState({
       clip: clickedSound,
     });
 
+    //přehraje zvuk podle toho na kterou dlaždici klikneme
     switch (this.state.clip) {
       case "delej":
         document.getElementById("Q").play();
@@ -75,6 +77,7 @@ class DrumMachineContainer extends React.Component {
 //Kontejner s 9 "dlaždicemi" které vydávají zvuk
 class DrumPadsContainer extends React.Component {
   componentDidMount() {
+    //přidán eventListener "click" na všechny dlaždice s class="drum-pad" --> po kliknutí se vyvolá funkce handleClick
     document.querySelectorAll(".drum-pad").forEach((item) => {
       console.log(item);
       item.addEventListener("click", this.props.handleClick);
