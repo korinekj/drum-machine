@@ -11,6 +11,7 @@ class App extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleClick(event) {
@@ -26,35 +27,103 @@ class App extends React.Component {
       case "delej":
         document.getElementById("Q").play();
         break;
+
       case "mam-to-v-pici":
         document.getElementById("W").play();
         break;
+
       case "a-co-jako-vole":
         document.getElementById("E").play();
         break;
+
       case "duranga-vole":
         document.getElementById("A").play();
         break;
+
       case "rikas-mi-hezky":
         document.getElementById("S").play();
         break;
+
       case "stranskej-vyprcanej":
         document.getElementById("D").play();
         break;
+
       case "je-cas-klidu":
         document.getElementById("Z").play();
         break;
+
       case "curak-vydlazdenej":
         document.getElementById("X").play();
         break;
+
       case "ser-na-to":
         document.getElementById("C").play();
         break;
     }
   }
 
+  handleKeyPress(event) {
+    let pressedKey = event.key;
+
+    //ZDE POKRAČOVAT
+    switch (pressedKey) {
+      case "q":
+      case "Q":
+        let test = document.getElementById("delej");
+        let test1 = document.getElementById("Q");
+        test.classList.toggle("pressed-key");
+        test1.play();
+        break;
+
+      case "w":
+      case "W":
+        document.getElementById("W").play();
+        break;
+
+      case "e":
+      case "E":
+        document.getElementById("E").play();
+        break;
+
+      case "a":
+      case "A":
+        document.getElementById("A").play();
+        break;
+
+      case "s":
+      case "S":
+        document.getElementById("S").play();
+        break;
+
+      case "d":
+      case "D":
+        document.getElementById("D").play();
+        break;
+
+      case "z":
+      case "Z":
+        document.getElementById("Z").play();
+        break;
+
+      case "x":
+      case "X":
+        document.getElementById("X").play();
+        break;
+
+      case "c":
+      case "C":
+        document.getElementById("C").play();
+        break;
+    }
+  }
+
   render() {
-    return <DrumMachineContainer handleClick={this.handleClick} />;
+    return (
+      <DrumMachineContainer
+        handleClick={this.handleClick}
+        handleKeyPress={this.handleKeyPress}
+      />
+    );
   }
 }
 
@@ -67,7 +136,10 @@ class DrumMachineContainer extends React.Component {
   render() {
     return (
       <div id="drum-machine">
-        <DrumPadsContainer handleClick={this.props.handleClick} />
+        <DrumPadsContainer
+          handleClick={this.props.handleClick}
+          handleKeyPress={this.props.handleKeyPress}
+        />
         <ControlsContainer />
       </div>
     );
@@ -82,6 +154,8 @@ class DrumPadsContainer extends React.Component {
       console.log(item);
       item.addEventListener("click", this.props.handleClick);
     });
+
+    document.addEventListener("keydown", this.props.handleKeyPress);
   }
 
   render() {

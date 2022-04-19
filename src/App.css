@@ -85,3 +85,7 @@ input {
   padding: 10px;
 }
 
+.pressed-key {
+  background-color: rgb(38, 129, 129);
+}
+
