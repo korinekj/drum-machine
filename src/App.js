@@ -63,56 +63,90 @@ class App extends React.Component {
   }
 
   handleKeyPress(event) {
+    //pressedKey = stisknutá klávesa
     let pressedKey = event.key;
 
-    //ZDE POKRAČOVAT
+    //podle toho, která se stiskne klávesa, se přehraje konkrétní zvuk
     switch (pressedKey) {
       case "q":
       case "Q":
-        let test = document.getElementById("delej");
-        let test1 = document.getElementById("Q");
-        test.classList.toggle("pressed-key");
-        test1.play();
+        const drumPadQ = document.getElementById("delej");
+        const drumPadQClip = document.getElementById("Q");
+        drumPadQ.classList.add("pressed-key");
+        drumPadQClip.play();
+        setTimeout(() => drumPadQ.classList.remove("pressed-key"), 3000);
         break;
 
       case "w":
       case "W":
-        document.getElementById("W").play();
+        const drumPadW = document.getElementById("mam-to-v-pici");
+        const drumPadWClip = document.getElementById("W");
+        drumPadW.classList.add("pressed-key");
+        drumPadWClip.play();
+        setTimeout(() => drumPadW.classList.remove("pressed-key"), 2000);
         break;
 
       case "e":
       case "E":
-        document.getElementById("E").play();
+        const drumPadE = document.getElementById("a-co-jako-vole");
+        const drumPadEClip = document.getElementById("E");
+        drumPadE.classList.add("pressed-key");
+        drumPadEClip.play();
+        setTimeout(() => drumPadE.classList.remove("pressed-key"), 1000);
         break;
 
       case "a":
       case "A":
-        document.getElementById("A").play();
+        const drumPadA = document.getElementById("duranga-vole");
+        const drumPadAClip = document.getElementById("A");
+        drumPadA.classList.add("pressed-key");
+        drumPadAClip.play();
+        setTimeout(() => drumPadA.classList.remove("pressed-key"), 1000);
         break;
 
       case "s":
       case "S":
-        document.getElementById("S").play();
+        const drumPadS = document.getElementById("rikas-mi-hezky");
+        const drumPadSClip = document.getElementById("S");
+        drumPadS.classList.add("pressed-key");
+        drumPadSClip.play();
+        setTimeout(() => drumPadS.classList.remove("pressed-key"), 2000);
         break;
 
       case "d":
       case "D":
-        document.getElementById("D").play();
+        const drumPadD = document.getElementById("stranskej-vyprcanej");
+        const drumPadDClip = document.getElementById("D");
+        drumPadD.classList.add("pressed-key");
+        drumPadDClip.play();
+        setTimeout(() => drumPadD.classList.remove("pressed-key"), 2000);
         break;
 
       case "z":
       case "Z":
-        document.getElementById("Z").play();
+        const drumPadZ = document.getElementById("je-cas-klidu");
+        const drumPadZClip = document.getElementById("Z");
+        drumPadZ.classList.add("pressed-key");
+        drumPadZClip.play();
+        setTimeout(() => drumPadZ.classList.remove("pressed-key"), 2000);
         break;
 
       case "x":
       case "X":
-        document.getElementById("X").play();
+        const drumPadX = document.getElementById("curak-vydlazdenej");
+        const drumPadXClip = document.getElementById("X");
+        drumPadX.classList.add("pressed-key");
+        drumPadXClip.play();
+        setTimeout(() => drumPadX.classList.remove("pressed-key"), 3000);
         break;
 
       case "c":
       case "C":
-        document.getElementById("C").play();
+        const drumPadC = document.getElementById("ser-na-to");
+        const drumPadCClip = document.getElementById("C");
+        drumPadC.classList.add("pressed-key");
+        drumPadCClip.play();
+        setTimeout(() => drumPadC.classList.remove("pressed-key"), 3000);
         break;
     }
   }
@@ -155,6 +189,7 @@ class DrumPadsContainer extends React.Component {
       item.addEventListener("click", this.props.handleClick);
     });
 
+    //event listener na stisk klávesy
     document.addEventListener("keydown", this.props.handleKeyPress);
   }
 
