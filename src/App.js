@@ -1,3 +1,4 @@
+import { click } from "@testing-library/user-event/dist/click";
 import React from "react";
 import "./App.css";
 
@@ -8,6 +9,7 @@ class App extends React.Component {
 
     this.state = {
       clip: "",
+      string: "",
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -20,6 +22,7 @@ class App extends React.Component {
 
     this.setState({
       clip: clickedSound,
+      string: clickedSound,
     });
 
     //přehraje zvuk podle toho na kterou dlaždici klikneme
@@ -74,6 +77,9 @@ class App extends React.Component {
         const drumPadQClip = document.getElementById("Q");
         drumPadQ.classList.add("pressed-key");
         drumPadQClip.play();
+        this.setState({
+          string: drumPadQ.id,
+        });
         setTimeout(() => drumPadQ.classList.remove("pressed-key"), 3000);
         break;
 
@@ -83,6 +89,9 @@ class App extends React.Component {
         const drumPadWClip = document.getElementById("W");
         drumPadW.classList.add("pressed-key");
         drumPadWClip.play();
+        this.setState({
+          string: drumPadW.id,
+        });
         setTimeout(() => drumPadW.classList.remove("pressed-key"), 2000);
         break;
 
@@ -92,6 +101,9 @@ class App extends React.Component {
         const drumPadEClip = document.getElementById("E");
         drumPadE.classList.add("pressed-key");
         drumPadEClip.play();
+        this.setState({
+          string: drumPadE.id,
+        });
         setTimeout(() => drumPadE.classList.remove("pressed-key"), 1000);
         break;
 
@@ -101,6 +113,9 @@ class App extends React.Component {
         const drumPadAClip = document.getElementById("A");
         drumPadA.classList.add("pressed-key");
         drumPadAClip.play();
+        this.setState({
+          string: drumPadA.id,
+        });
         setTimeout(() => drumPadA.classList.remove("pressed-key"), 1000);
         break;
 
@@ -110,6 +125,9 @@ class App extends React.Component {
         const drumPadSClip = document.getElementById("S");
         drumPadS.classList.add("pressed-key");
         drumPadSClip.play();
+        this.setState({
+          string: drumPadS.id,
+        });
         setTimeout(() => drumPadS.classList.remove("pressed-key"), 2000);
         break;
 
@@ -119,6 +137,9 @@ class App extends React.Component {
         const drumPadDClip = document.getElementById("D");
         drumPadD.classList.add("pressed-key");
         drumPadDClip.play();
+        this.setState({
+          string: drumPadD.id,
+        });
         setTimeout(() => drumPadD.classList.remove("pressed-key"), 2000);
         break;
 
@@ -128,6 +149,9 @@ class App extends React.Component {
         const drumPadZClip = document.getElementById("Z");
         drumPadZ.classList.add("pressed-key");
         drumPadZClip.play();
+        this.setState({
+          string: drumPadZ.id,
+        });
         setTimeout(() => drumPadZ.classList.remove("pressed-key"), 2000);
         break;
 
@@ -137,6 +161,9 @@ class App extends React.Component {
         const drumPadXClip = document.getElementById("X");
         drumPadX.classList.add("pressed-key");
         drumPadXClip.play();
+        this.setState({
+          string: drumPadX.id,
+        });
         setTimeout(() => drumPadX.classList.remove("pressed-key"), 3000);
         break;
 
@@ -146,6 +173,9 @@ class App extends React.Component {
         const drumPadCClip = document.getElementById("C");
         drumPadC.classList.add("pressed-key");
         drumPadCClip.play();
+        this.setState({
+          string: drumPadC.id,
+        });
         setTimeout(() => drumPadC.classList.remove("pressed-key"), 3000);
         break;
     }
@@ -156,6 +186,7 @@ class App extends React.Component {
       <DrumMachineContainer
         handleClick={this.handleClick}
         handleKeyPress={this.handleKeyPress}
+        text={this.state.string}
       />
     );
   }
@@ -174,7 +205,7 @@ class DrumMachineContainer extends React.Component {
           handleClick={this.props.handleClick}
           handleKeyPress={this.props.handleKeyPress}
         />
-        <ControlsContainer />
+        <ControlsContainer text={this.props.text} />
       </div>
     );
   }
@@ -279,7 +310,7 @@ class ControlsContainer extends React.Component {
     return (
       <div id="controls-container">
         <PowerComponent />
-        <DisplayComponent />
+        <DisplayComponent text={this.props.text} />
         <VolumeComponent />
         <AudioTypeComponent />
       </div>
@@ -309,7 +340,7 @@ class DisplayComponent extends React.Component {
   render() {
     return (
       <div id="display">
-        <p>display</p>
+        <p>{this.props.text}</p>
       </div>
     );
   }
