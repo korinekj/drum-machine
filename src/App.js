@@ -1,6 +1,7 @@
-import { click } from "@testing-library/user-event/dist/click";
 import React from "react";
 import "./App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFreeCodeCamp } from "@fortawesome/free-brands-svg-icons";
 
 //Logika aplikace
 class App extends React.Component {
@@ -206,6 +207,13 @@ class DrumMachineContainer extends React.Component {
           handleKeyPress={this.props.handleKeyPress}
         />
         <ControlsContainer text={this.props.text} />
+
+        <span className="logo">
+          FCC&nbsp;
+          <i>
+            <FontAwesomeIcon icon={faFreeCodeCamp} />
+          </i>
+        </span>
       </div>
     );
   }
@@ -325,12 +333,26 @@ class ControlsContainer extends React.Component {
 //    ** KOMPONENTY <ControlsContainer> **
 
 class PowerComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      power: true,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      power: !this.state.power,
+    });
+  }
   render() {
     return (
-      <div id="power">
+      <div id="power" onClick={this.handleClick}>
         <p>Power</p>
-        <span className="off"></span>
-        <span className="on"></span>
+        <span className={this.state.power ? "off" : "on"}></span>
+        <span className={!this.state.power ? "off" : "on"}></span>
       </div>
     );
   }
