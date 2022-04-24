@@ -224,7 +224,6 @@ class DrumPadsContainer extends React.Component {
   componentDidMount() {
     //přidán eventListener "click" na všechny dlaždice s class="drum-pad" --> po kliknutí se vyvolá funkce handleClick
     document.querySelectorAll(".drum-pad").forEach((item) => {
-      console.log(item);
       item.addEventListener("click", this.props.handleClick);
     });
 
@@ -346,6 +345,8 @@ class PowerComponent extends React.Component {
     this.setState({
       power: !this.state.power,
     });
+
+    console.log(this.state.power);
   }
   render() {
     return (
