@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFreeCodeCamp } from "@fortawesome/free-brands-svg-icons";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 //Logika aplikace
 class App extends React.Component {
@@ -206,7 +207,11 @@ class DrumMachineContainer extends React.Component {
           handleClick={this.props.handleClick}
           handleKeyPress={this.props.handleKeyPress}
         />
-        <ControlsContainer text={this.props.text} />
+        <ControlsContainer
+          text={this.props.text}
+          handleClick={this.props.handleClick}
+          handleKeyPress={this.props.handleKeyPress}
+        />
 
         <span className="logo">
           FCC&nbsp;
@@ -316,7 +321,10 @@ class ControlsContainer extends React.Component {
   render() {
     return (
       <div id="controls-container">
-        <PowerComponent />
+        <PowerComponent
+          handleClick={this.props.handleClick}
+          handleKeyPress={this.props.handleKeyPress}
+        />
         <DisplayComponent text={this.props.text} />
         <VolumeComponent />
         <AudioTypeComponent />
@@ -338,20 +346,40 @@ class PowerComponent extends React.Component {
       power: true,
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handlePower = this.handlePower.bind(this);
   }
 
-  handleClick() {
+  handlePower() {
     this.setState({
       power: !this.state.power,
     });
 
-    console.log(this.state.power);
+    /*
+     *ON/OFF
+     * - pokud je vypnuto = true -> odstraní eventListenery (dlaždice nefungují a nepřehrávají zvuk)
+     * - pokud je vypnuto = false -> přidá eventListenery (na dlaždice lze opět klikat/stisk klávesu a přehraje zvuk)
+     */
+    if (this.state.power === true) {
+      document.querySelectorAll(".drum-pad").forEach((item) => {
+        item.removeEventListener("click", this.props.handleClick);
+        item.classList.add("disable-pads");
+      });
+      document.removeEventListener("keydown", this.props.handleKeyPress);
+    } else {
+      document.querySelectorAll(".drum-pad").forEach((item) => {
+        item.addEventListener("click", this.props.handleClick);
+        item.classList.remove("disable-pads");
+      });
+      document.addEventListener("keydown", this.props.handleKeyPress);
+    }
   }
+
   render() {
     return (
-      <div id="power" onClick={this.handleClick}>
-        <p>Power</p>
+      <div id="power" onClick={this.handlePower}>
+        <p style={{ cursor: "help" }} title="modrá značí, který stav platí">
+          Power (Off/On)
+        </p>
         <span className={this.state.power ? "off" : "on"}></span>
         <span className={!this.state.power ? "off" : "on"}></span>
       </div>
@@ -370,10 +398,33 @@ class DisplayComponent extends React.Component {
 }
 
 class VolumeComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      elem: ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"],
+    };
+
+    this.changeVolume = this.changeVolume.bind(this);
+  }
+
+  //*Změna hlasitosti (všem dlaždicím nastaví hlasitost dle hodnoty posuvníku)
+  changeVolume(event) {
+    this.state.elem.forEach((item) => {
+      const audio = document.getElementById(item);
+      audio.volume = event.target.value / 100;
+    });
+  }
+
   render() {
     return (
       <div id="volume">
-        <input type="range" min="0" max="100" step="10"></input>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="10"
+          onChange={this.changeVolume}
+        ></input>
       </div>
     );
   }

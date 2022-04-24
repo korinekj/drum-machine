@@ -15,8 +15,8 @@ input {
 }
 
 #drum-machine {
-  background-color: #B3B3B3;
-  border: 5px solid #FFA500;
+  background-color: #b3b3b3;
+  border: 5px solid #ffa500;
   display: flex;
   text-align: center;
   width: 600px;
@@ -37,15 +37,15 @@ input {
   background-color: #808080;
   padding-top: 20px;
   cursor: pointer;
-  box-shadow: black 3px 3px 5px; 
+  box-shadow: black 3px 3px 5px;
 }
 .drum-pad:hover {
-  background-color: #FFA500;
+  background-color: #ffa500;
 }
 
 /*CSS pro ovladácí prvky */
 #controls-container {
-  width:50%;
+  width: 50%;
   padding-top: 15px;
 }
 
@@ -56,7 +56,6 @@ input {
   font-weight: bold;
 }
 
-#power,
 #audio-type:hover {
   cursor: not-allowed;
 }
@@ -84,7 +83,6 @@ input {
   cursor: not-allowed;
 }
 
-
 #display {
   width: 70%;
   height: 50px;
@@ -96,11 +94,11 @@ input {
 }
 
 #volume input {
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 .pressed-key {
-  background-color: #FFA500;
+  background-color: #ffa500;
 }
 
 .logo {
@@ -109,4 +107,12 @@ input {
   right: 10px;
   font-weight: bold;
   font-size: 20px;
+}
+
+.disable-pads {
+  cursor: not-allowed;
+}
+
+#power span:hover {
+  cursor: pointer;
 }
